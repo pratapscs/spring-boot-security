@@ -1,1 +1,1 @@
-# spring-security-jwt
+# spring-boot-security

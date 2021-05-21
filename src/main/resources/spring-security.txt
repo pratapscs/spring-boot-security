@@ -1,0 +1,115 @@
+Spring Security:
+===============
+
+1. User name/Password authentication.
+2. SSO / Okta / LDAP
+3. Application level Authorization.
+4. Intra Application Authorization like OAuth.
+5. Microservice security (using tokens, JWT).
+6. Method level security
+
+Core Concepts:
+==============
+
+1. Authentication. (Who are you?) -> who is this user?
+    1. Knowledge based Authentication.
+    	- Password
+    	- Pin code
+    	- Answer to a secret / personal questions
+    	* Easy to implement and use
+    	* Not fully safe.
+    
+    2. Possession based Authentication.
+    	- Phone / Text messages.
+    	- Key cards and badges.
+    	- Access token device.
+    	
+    3. Multi Factor Authentication.( Knowledge + Possession)
+    
+2. Authorization.(can this user do this? yes / no)
+	 - Are they allowed to do this?
+	 
+3. Principal.(currently logged in user)
+   	- One user can have multiple ID's
+   	- But there's usually just one logged-in user(per-request).
+
+4. Granted Authority.
+	- How does authorization happen?
+
+5. Roles.(Group of authorities).
+	- Roles are coarse-grained.
+	
+How to add Spring Security to new Spring Boot project?
+======================================================
+- Filters - (cross cutting for every request).
+- Spring security default behavior
+  * Adds mandatory authentication for URL's.
+  * Adds login form.
+  * Handles login error.
+  * create a user and sets a default password.
+- Spring Security generates a new password each time you start the application.
+
+ How to configure authentication in spring security?
+ ===================================================
+ - AuthenticationManager 
+ 
+ - AuthenticationManagerBuilder 
+ 	step 1: Get hold of AuthenticationManagerBuilder
+ 	step 2: Set the Configuration on it.
+ 	
+ - How do i get AuthenticationManagerBuilder?
+ 	-spring security application
+ 	  - Class -> extend this class
+ 	    - configure(AuthenticationManagerBuilder) -> override this method
+ 	    
+ - How to set a password encoder?
+ 	- Just expose an @Bean of type PasswordEncoder.
+ 
+  How to configure authorization in spring security?
+ ===================================================
+ - What we want - different APIs having different access requirements
+ 		
+ 		API - Roles allows to access
+ 		===========================
+ 		/ - All (unauthenticated)
+ 		/user - USER and ADMIN roles
+ 		/admin - ADMIN role
+ 		
+ -  How do i get HttpSecurity?
+ 	-spring security application
+ 	  - Class -> extend this WebSecurityConfigurerAdapter class
+ 	    - configure(HttpSecurity) -> override this method
+ 	    
+ - for login
+ 	http://localhost:8080/login
+	
+ - for logout
+ 	http://localhost:8080/logout
+ 
+ How to setup JDBC authentication with Spring Security
+ =====================================================
+ https://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/html/appendix-schema.html
+ 
+ Spring Security with JPA authentication:
+ =======================================
+ 
+ AuthenticationManger -> authenticate()
+ 	|
+ 	AuthenticationProvider -> authenticate(), supports()
+ 		|
+ 		userDetailsService -> loadUserByUserName()
+ 		  |
+ 		  JPA Services
+ 		  	|
+ 		  	DataBase
+ 
+ Spring Security - LDAP(Lightweight Directory Access Protocol)
+ =============================================================
+ https://spring.io/guides/gs/authenticating-ldap/
+ 
+ username : ben
+ password : benspassword
+ 
+ 
+ 
+ 

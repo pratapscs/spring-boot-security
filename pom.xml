@@ -9,10 +9,10 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.springsecurityjwt</groupId>
-	<artifactId>spring-security-jwt</artifactId>
+	<groupId>io.springsecurity</groupId>
+	<artifactId>spring-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-security-jwt</name>
+	<name>spring-security</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
